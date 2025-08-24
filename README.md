@@ -19,7 +19,7 @@ A command-line tool to fetch and analyse Chess.com games using the Stockfish che
 
 1. Clone this repository:
     ```sh
-    git clone https://github.com/yourusername/chessAnalyserFree.git
+    git clone https://github.com/godevuni/chessAnalyr
     cd chessAnalyserFree
     ```
 
