@@ -1,7 +1,8 @@
-package api
+package gameengine
 
 import (
 	"bufio"
+	"chessAnalyserFree/api"
 	"fmt"
 	"io"
 	"os/exec"
@@ -93,7 +94,7 @@ func (s *StockfishAnalyser) readUntil(contains string) (string, error) {
 }
 
 // AnalyseGame takes a game object and returns an analysis for each move.
-func (s *StockfishAnalyser) AnalyseGame(game Game) ([]MoveAnalysis, error) {
+func (s *StockfishAnalyser) AnalyseGame(game api.Game) ([]MoveAnalysis, error) {
 	// --- CORRECTED PGN PARSING LOGIC ---
 	// Use chess.PGN to create a parser, then pass it to chess.NewGame.
 	pgnReader := strings.NewReader(game.PGN)

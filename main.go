@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"chessAnalyserFree/api"
+	gameengine "chessAnalyserFree/gameEngine"
 	"fmt"
 	"log"
 	"os"
@@ -26,7 +27,7 @@ func main() {
 	stockfishPath := os.Args[4]
 
 	// --- Stockfish Analyser Initialization ---
-	analyser, err := api.NewStockfishAnalyser(stockfishPath)
+	analyser, err := gameengine.NewStockfishAnalyser(stockfishPath)
 	if err != nil {
 		log.Fatalf("Error starting Stockfish analyser: %v", err)
 	}
@@ -116,7 +117,7 @@ func listGames(games []api.Game) {
 }
 
 // handleSelectedGame provides options for a selected game (details, analyse).
-func handleSelectedGame(reader *bufio.Reader, analyser *api.StockfishAnalyser, game api.Game, gameNum int) {
+func handleSelectedGame(reader *bufio.Reader, analyser *gameengine.StockfishAnalyser, game api.Game, gameNum int) {
 	for {
 		fmt.Printf("\nSelected Game %d: %s vs %s\n", gameNum, game.White.Username, game.Black.Username)
 		fmt.Print("Enter command ('details', 'analyse', 'back'): ")
@@ -149,7 +150,7 @@ func displayGameDetails(game api.Game, index int) {
 }
 
 // analyseGameMoves triggers the stockfish analysis and prints the results.
-func analyseGameMoves(analyser *api.StockfishAnalyser, game api.Game) {
+func analyseGameMoves(analyser *gameengine.StockfishAnalyser, game api.Game) {
 	fmt.Println("\nAnalysing game... this may take a moment.")
 	analysis, err := analyser.AnalyseGame(game)
 	if err != nil {
